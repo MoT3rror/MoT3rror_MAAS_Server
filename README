@@ -1,0 +1,8 @@
+Steps
+
+Bring nodes back to ready if stuck
+from maasserver.models import Node
+from maasserver.enum import NODE_STATUS
+node = Node.objects.get(hostname='$hostname')
+node.status = NODE_STATUS.READY
+node.save()
