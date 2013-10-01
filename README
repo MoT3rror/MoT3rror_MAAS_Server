@@ -4,5 +4,19 @@ Bring nodes back to ready if stuck
 from maasserver.models import Node
 from maasserver.enum import NODE_STATUS
 node = Node.objects.get(hostname='$hostname')
-node.status = NODE_STATUS.READY
+node.release()
 node.save()
+
+Make sure to use this repository for latest bugs fixes
+sudo add-apt-repository ppa:juju/stable
+
+Use if having issue with tools cloud-init
+juju sync-tools 
+juju bootstrap --upload-tools 
+
+CPU Info
+cat /proc/cpuinfo
+Memory Info
+cat /proc/meminfo
+HardDrive Size
+df -H
