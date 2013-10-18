@@ -1,22 +1,52 @@
 Steps
 
-Bring nodes back to ready if stuck
+//Bring nodes back to ready if stuck
 from maasserver.models import Node
 from maasserver.enum import NODE_STATUS
 node = Node.objects.get(hostname='$hostname')
 node.release()
 node.save()
 
-Make sure to use this repository for latest bugs fixes
+//Make sure to use this repository for latest bugs fixes
 sudo add-apt-repository ppa:juju/stable
 
-Use if having issue with tools cloud-init
+//Use if having issue with tools cloud-init
 juju sync-tools 
 juju bootstrap --upload-tools 
 
-CPU Info
+//CPU Info
 cat /proc/cpuinfo
-Memory Info
+//Memory Info
 cat /proc/meminfo
-HardDrive Size
+//HardDrive Size
 df -H
+
+//Apache setup run after deploy and expose
+juju set apache2 "vhost_http_template=$(base64 < vhost.tmpl)"
+juju set apache2 "vhost_https_template=$(base64 < vhostsecure.tmpl)"
+
+//Sample vhost.tmpl
+<VirtualHost *:80>
+        DocumentRoot "/var/www"
+        ServerAdmin root@localhost
+
+        <Directory "/var/www">
+                Options all
+                AllowOverride All
+                Order allow,deny
+                Allow from all
+        </Directory>
+</VirtualHost>
+
+//Copy files from local to remote
+scp -r sourcedir/ user@dest.com:/dest/dir/
+
+ab -n 1000 -c 5 http://192.168.15.103/index.html
+-n = number of requests
+-c = number of requests per cycle
+
+//Have to run on web servers to get php(make charm to do this)
+sudo apt-get install php5 libapache2-mod-php5
+
+mysql user: websiteconn
+pass: yourwebsite

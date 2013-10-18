@@ -1,13 +1,13 @@
 Machines
-ID          CPU             Memory          HardDrive           Role
-MaasMaster  P(R) 3.2 Ghz    1016 MB         78 GB               MAAS
-1.          P4 1.7 Ghz      765 MB          20 GB               
-2.          P4 1.7 Ghz      765 MB          20 GB               Juju-Gui Zookeeper
-3.          P4 1.7 Ghz      636 MB          20 GB
-4.          P4 1.7 Ghz      506 MB          20 GB
-5.          P4 1.7 Ghz      506 MB          20 GB
-6.          P4 1.7 Ghz      1024 MB         20 GB
-7.          P4 1.7 Ghz      1024 MB         20 GB
-8.                          384 MB
-9.          P4 1.7 Ghz      506 MB          20 GB
-10.         P4 1.7 Ghz      765 MB          20 GB
+ID          CPU             Memory          HardDrive           Role                        Machine #
+MaasMaster  P(R) 3.2 Ghz    1016 MB         78 GB               MAAS                        
+1.          P4 1.7 Ghz      765 MB          20 GB               Apache                      2
+2.          P4 1.7 Ghz      765 MB          20 GB               Zookeeper Apache            0
+3.          P4 1.7 Ghz      636 MB          20 GB               LoadBalancer Mysql          1
+4.          P4 1.7 Ghz      506 MB          20 GB               Mysql P                     4
+5.          P4 1.7 Ghz      506 MB          20 GB               Mysql S                     5
+6.          P4 1.7 Ghz      1024 MB         20 GB               loadbalancer apache         6
+7.          P4 1.7 Ghz      1024 MB         20 GB               memcache                    7
+8.          P4 1.7 Ghz      384 MB          20 GB               juju-gui phpmyadmin         3
+9.          P4 1.7 Ghz      506 MB          20 GB               mysql S                     9
+10.         P4 1.7 Ghz      765 MB          20 GB               Apache                      8
