@@ -38,6 +38,18 @@ juju set apache2 "vhost_https_template=$(base64 < vhostsecure.tmpl)"
         </Directory>
 </VirtualHost>
 
+//lithium and htmlPurifier need to go in /usr/local/lib
+wget https://github.com/UnionOfRAD/lithium/archive/master.zip
+unzip master.zip
+mv lithium-master lithium
+
+wget http://htmlpurifier.org/releases/htmlpurifier-4.5.0.zip
+uzip htmlpurifier-4.5.0.zip
+mv htmlpurifier-4.5.0/libraries HTMLPurifier
+
+//turn on mod rewrite
+a2enmod rewrite
+
 //Copy files from local to remote
 scp -r sourcedir/ user@dest.com:/dest/dir/
 
@@ -46,7 +58,10 @@ ab -n 1000 -c 5 http://192.168.15.103/index.html
 -c = number of requests per cycle
 
 //Have to run on web servers to get php(make charm to do this)
-sudo apt-get install php5 libapache2-mod-php5
+sudo apt-get install php5 libapache2-mod-php5 libapache2-mod-auth-mysql php5-mysql
 
 mysql user: websiteconn
 pass: yourwebsite
+
+//grant all privileges to a user, should specify host through
+GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'%' WITH GRANT OPTION;
